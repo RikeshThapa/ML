@@ -22,6 +22,22 @@ class Vector(object):
     def __eq__(self, v):
         return self.coordinates == v.coordinates
 
+    #Not a big fan of method declaration for functions like theres, but just for the sake of example and ultimate flexibility:
+
+    def plus(self, v):
+        new_coordinates = [x+y for x,y in zip(self.coordinates, v.coordinates)]
+        return Vector(new_coordinates)
+
+    def minus(self, v):
+        new_coordinates = [x-y for x,y in zip(self.coordinates, v.coordinates)]
+        return Vector(new_coordinates)
+
+    def times_scalar(self, s):
+        new_coordinates = [x*s for x in self.coordinates]
+        return Vector(new_coordinates)
+
+
+
 
 
 def plus(v1, v2):
