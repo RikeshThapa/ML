@@ -1,4 +1,5 @@
 import operator
+import math
 
 class Vector(object):
     def __init__(self, coordinates):
@@ -7,6 +8,8 @@ class Vector(object):
                 raise ValueError
             self.coordinates = tuple(coordinates)
             self.dimension = len(coordinates)
+            self.magnitude = self.getMagnitude()
+            self.direction = self.getDirection()
 
         except ValueError:
             raise ValueError('The coordinates must be nonempty')
@@ -36,8 +39,17 @@ class Vector(object):
         new_coordinates = [x*s for x in self.coordinates]
         return Vector(new_coordinates)
 
+    #I could compress this into one line or something. But I'm not an asshole who enjoys having people
+    # spend hours trying to understand my code
+    def getMagnitude(self):
+        square_vector = [x*x for x in self.coordinates]
+        sum_of_squares = sum(square_vector)
+        magnitude = math.sqrt(sum_of_squares)
+        return magnitude
 
-
+    def getDirection(self):
+        unit_vector = [self.magnitude*x for x in self.coordinates]
+        return unit_vector
 
 
 def plus(v1, v2):
@@ -60,6 +72,7 @@ def scalar(s, v):
     return tuple(scalarresult)
 
 
+'''Test main function'''
 if __name__ == '__main__':
     coordinates1 = (7.119, 8.215)
     v1 = Vector(coordinates1)
