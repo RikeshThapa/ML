@@ -48,7 +48,7 @@ class Vector(object):
         return magnitude
 
     def getDirection(self):
-        unit_vector = [self.magnitude*x for x in self.coordinates]
+        unit_vector = [(1/self.magnitude)*x for x in self.coordinates]
         return unit_vector
 
 
@@ -74,13 +74,10 @@ def scalar(s, v):
 
 '''Test main function'''
 if __name__ == '__main__':
-    coordinates1 = (7.119, 8.215)
+    coordinates1 = (5.581, -2.136)
     v1 = Vector(coordinates1)
-
-    coordinates3 = (-8.223, 0.878)
-    v3 = Vector(coordinates3)
-
-    print(minus(v1, v3))
+    print(v1.direction)
+    #print(v1.direction)
 
     '''coordinates2 = (1.671, -1.012, -0.318)
     v2 = Vector(coordinates2)
