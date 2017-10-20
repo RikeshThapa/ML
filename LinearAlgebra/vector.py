@@ -42,14 +42,17 @@ class Vector(object):
     #I could compress this into one line or something. But I'm not an asshole who enjoys having people
     # spend hours trying to understand my code
     def getMagnitude(self):
-        square_vector = [x*x for x in self.coordinates]
+        square_vector = [x**2 for x in self.coordinates]
         sum_of_squares = sum(square_vector)
         magnitude = math.sqrt(sum_of_squares)
         return magnitude
 
     def getDirection(self):
-        unit_vector = [(1/self.magnitude)*x for x in self.coordinates]
-        return unit_vector
+        try:
+            #unit_vector = [(1/self.magnitude)*x for x in self.coordinates]
+            return self.times_scalar(1./self.magnitude)
+        except ZeroDivisionError:
+            raise Exception("Cannot be normalized magnitude of vector is 0")
 
 
 def plus(v1, v2):
